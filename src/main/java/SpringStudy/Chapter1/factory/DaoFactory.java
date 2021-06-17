@@ -28,7 +28,7 @@ public class DaoFactory {
         return  new MessegeDao(connectionMaker());
     }
 
-    @Bean
+    @Bean(name = "connectionMaker")
     public ConnectionMaker connectionMaker(){
         return new DConnectionMaker();
     }

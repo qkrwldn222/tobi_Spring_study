@@ -5,6 +5,7 @@ package SpringStudy.Chapter1;
 
 import SpringStudy.Chapter1.factory.DaoFactory;
 import SpringStudy.Chapter1.maker.ConnectionMaker;
+
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.sql.*;
@@ -18,9 +19,11 @@ public class UserDao {
     public void setConnectionMaker(ConnectionMaker connectionMaker){
         this.cm = connectionMaker;
     }
+
     public UserDao(ConnectionMaker cm){
         this.cm = cm;
     }
+
     public UserDao(){
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DaoFactory.class);
         this.cm = context.getBean("connectionMaker",ConnectionMaker.class);

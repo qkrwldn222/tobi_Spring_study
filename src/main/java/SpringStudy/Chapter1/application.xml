@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-    <bean id="dataSourc" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
 
         <property name="driverClass" value="org.h2.Driver"/>
         <property name="url" value="jdbc:h2:tcp://localhost/~/sa"/>
@@ -13,6 +13,6 @@
     </bean>
 
     <bean id="userDao" class="SpringStudy/Chapter1/UserDao.java">
-        <property name="dataSource" ref="dataSourc" />
+        <property name="dataSource" ref="dataSource" />
     </bean>
 </beans>
