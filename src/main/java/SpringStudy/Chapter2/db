@@ -1,0 +1,16 @@
+create table studier(
+	idx int not null AUTO_INCREMENT PRIMARY KEY,
+	name varchar2(10) not null,
+	age int not null
+)
+
+
+create table msg(
+	idx int not null AUTO_INCREMENT primary key,
+	contents varchar2(100) not null,
+	sender int,
+	receiver int,
+	read int default 1,
+	FOREIGN KEY (sender) REFERENCES studier (idx) ON DELETE CASCADE,
+	FOREIGN KEY (receiver) REFERENCES studier (idx) ON DELETE CASCADE
+)
