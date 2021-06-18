@@ -21,7 +21,6 @@ public class PingPongDuplexHandler extends ChannelDuplexHandler {
             } else if (e.state() == IdleState.WRITER_IDLE) {
             		JSONObject requestJson = new JSONObject();
     				requestJson.put("type", "ping");
-    				
             		ctx.writeAndFlush(new TextWebSocketFrame(requestJson.toJSONString())  );  		
             }
         }

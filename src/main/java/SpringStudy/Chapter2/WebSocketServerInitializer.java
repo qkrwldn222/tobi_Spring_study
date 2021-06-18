@@ -34,7 +34,7 @@ import io.netty.handler.timeout.IdleStateHandler;
  */
 public class WebSocketServerInitializer extends ChannelInitializer<SocketChannel> {
 
-	private static final String WEBSOCKET_PATH = "/drone";
+	private static final String WEBSOCKET_PATH = "/study";
 
 	public WebSocketServerInitializer() {
 		
@@ -43,13 +43,9 @@ public class WebSocketServerInitializer extends ChannelInitializer<SocketChannel
 	@Override
 	public void initChannel(SocketChannel ch) throws Exception {
 		ChannelPipeline pipeline = ch.pipeline();
-		
-		
 		pipeline.addLast(new HttpServerCodec());
 		pipeline.addLast(new HttpObjectAggregator(65536));
 		pipeline.addLast(new WebSocketServerCompressionHandler());
-		
-		
 		pipeline.addLast(new ByteToMessageDecoder() {
 			@Override
 			protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) { // (2)
@@ -60,8 +56,6 @@ public class WebSocketServerInitializer extends ChannelInitializer<SocketChannel
 		    }
 		});
 		pipeline.addLast(new WebSocketServerProtocolHandler(WEBSOCKET_PATH, null, true));
-
-
 		pipeline.addLast("idleStateHandler", new IdleStateHandler(90, 60, 0));
 		pipeline.addLast("myHandler", new PingPongDuplexHandler());
 

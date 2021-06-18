@@ -25,28 +25,7 @@ public class StudyApplicationTest {
 
     @BeforeEach
     public void testStart(){
-        EventLoopGroup bossGroup = new NioEventLoopGroup(1);
-        EventLoopGroup workerGroup = new NioEventLoopGroup();
-        try {
-            ServerBootstrap b = new ServerBootstrap();
-            b.group(bossGroup, workerGroup).option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 120*1000)
-                    .channel(NioServerSocketChannel.class)
-                    .handler(new LoggingHandler(LogLevel.INFO))
-                    .childOption(ChannelOption.SO_KEEPALIVE, true)
-                    .childOption(ChannelOption.TCP_NODELAY, true)
-                    .childOption(ChannelOption.SO_REUSEADDR, true)
-                    .childOption(ChannelOption.SO_LINGER, 0)
-                    .childHandler(new WebSocketServerInitializer());
-            Channel ch = b.bind(3333).sync().channel();
 
-            ch.closeFuture().sync();
-
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } finally {
-            bossGroup.shutdownGracefully();
-            workerGroup.shutdownGracefully();
-        }
     }
 
 
