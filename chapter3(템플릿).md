@@ -223,7 +223,7 @@ public void deleteAll(){
 JdbcTemplate를 JdbcContext와 바꿔주고 내장된 콜백과 템플릿 메소드 update를 사용하면 기존과 유사한 deleteAll()메소드를 만들 수 있다.
 
 ```
-// 콜백만 사용해서 만든 deleteAll()
+// 내장 콜백을 사용하는 deleteAll()
 public void deleteAll(){  
  this.jdbcTemplate.update("delete from users");  
 }
